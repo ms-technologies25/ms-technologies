@@ -10,7 +10,7 @@
 
   <div class="shop">
     {% if message %}
-      <p class="no-products-message" style="font-style: italic">{{ message }}</p>
+      <p class="no-products-message" style="font-style: italic; text-align: center;">{{ message }}</p>
     {% else %}
       {% for product, range, nSlides in allProds %}
         {% for i in product %}

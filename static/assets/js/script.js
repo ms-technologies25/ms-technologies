@@ -73,17 +73,7 @@ document.addEventListener("DOMContentLoaded", function (){
       navMenu.classList.remove('open');
     });
 
-    /*----------------------------------------- arrivals -----------------------------------------*/
-
-
-    document.querySelectorAll('.arrivals-product').forEach((item, index)=>{
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'scale(1.02)';
-        });
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'scale(1)';
-        });
-    });
+    
 
     /*----------------------------------------- services -----------------------------------------*/
 
@@ -118,45 +108,6 @@ document.addEventListener("DOMContentLoaded", function (){
         card.style.transform = 'translateY(30px)';
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         servicesObserver.observe(card);
-    });
-
-    const swiper = new Swiper('.arrivals-wrapper', {
-
-        loop: true,
-        grabCursor: true,
-        spaceBetween: 15,
-
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-
-        breakpoints:{
-            0:{
-                slidesPerView: 1,
-            },
-            768:{
-                slidesPerView: 2,
-            },
-            1025:{
-                slidesPerView: 4,
-            },
-            1200:{
-                slidesPerView: 5,
-            },
-            1600:{
-                slidesPerView: 6,
-            },
-            2000:{
-                slidesPerView: 7,
-            },
-            2400:{
-                slidesPerView: 8,
-            },
-            2800:{
-                slidesPerView: 9,
-            },
-        }
     });
     
     /*----------------------------------------- search panel-----------------------------------------*/
@@ -209,51 +160,100 @@ document.addEventListener("DOMContentLoaded", function (){
 
 });
 
+/*----------------------------------------- arrivals -----------------------------------------*/
 
-    /*----------------------------------------- load products -----------------------------------------*/
 
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const products = document.querySelectorAll(".shop-product");
-        const seeMoreBtn = document.getElementById("seeMoreBtn");
-        const seeLessBtn = document.getElementById("seeLessBtn");
-      
-        let visibleCount = 20;
-      
-        const showProducts = () => {
-          products.forEach((product, index) => {
-            product.style.display = index < visibleCount ? "block" : "none";
-          });
-        };
-      
-        // Initial check to show or hide the See More button
-        if (products.length > 20) {
-          seeMoreBtn.style.display = "inline-block";
-        } else {
-          seeMoreBtn.style.display = "none";
-        }
-      
-        seeMoreBtn.addEventListener("click", () => {
-          visibleCount += 20;
-          showProducts();
-          seeLessBtn.style.display = "inline-block";
-      
-          if (visibleCount >= products.length) {
-            seeMoreBtn.style.display = "none";
-          }
-        });
-      
-        seeLessBtn.addEventListener("click", () => {
-          visibleCount = Math.max(20, visibleCount - 20);
-          showProducts();
-          seeMoreBtn.style.display = "inline-block";
-      
-          if (visibleCount === 20) {
-            seeLessBtn.style.display = "none";
-          }
-        });
-      
-        // Initial rendering of products
-        showProducts();
+document.querySelectorAll('.arrivals-product').forEach((item, index)=>{
+    item.addEventListener('mouseenter', () => {
+        item.style.transform = 'scale(1.02)';
     });
-      
+    item.addEventListener('mouseleave', () => {
+        item.style.transform = 'scale(1)';
+    });
+});
+
+const swiper = new Swiper('.arrivals-wrapper', {
+
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 15,
+
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    breakpoints:{
+        0:{
+            slidesPerView: 1,
+        },
+        768:{
+            slidesPerView: 2,
+        },
+        1025:{
+            slidesPerView: 4,
+        },
+        1200:{
+            slidesPerView: 5,
+        },
+        1600:{
+            slidesPerView: 6,
+        },
+        2000:{
+            slidesPerView: 7,
+        },
+        2400:{
+            slidesPerView: 8,
+        },
+        2800:{
+            slidesPerView: 9,
+        },
+    }
+});
+
+/*----------------------------------------- load products -----------------------------------------*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const products = document.querySelectorAll(".shop-product");
+    const seeMoreBtn = document.getElementById("seeMoreBtn");
+    const seeLessBtn = document.getElementById("seeLessBtn");
+  
+    let visibleCount = 20;
+  
+    const showProducts = () => {
+      products.forEach((product, index) => {
+        product.style.display = index < visibleCount ? "block" : "none";
+      });
+    };
+  
+    // Initial check to show or hide the See More button
+    if (products.length > 20) {
+      seeMoreBtn.style.display = "inline-block";
+    } else {
+      seeMoreBtn.style.display = "none";
+    }
+  
+    seeMoreBtn.addEventListener("click", () => {
+      visibleCount += 20;
+      showProducts();
+      seeLessBtn.style.display = "inline-block";
+  
+      if (visibleCount >= products.length) {
+        seeMoreBtn.style.display = "none";
+      }
+    });
+  
+    seeLessBtn.addEventListener("click", () => {
+      visibleCount = Math.max(20, visibleCount - 20);
+      showProducts();
+      seeMoreBtn.style.display = "inline-block";
+  
+      if (visibleCount === 20) {
+        seeLessBtn.style.display = "none";
+      }
+    });
+  
+    // Initial rendering of products
+    showProducts();
+});
+  

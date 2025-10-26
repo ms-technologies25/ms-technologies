@@ -1,7 +1,10 @@
 @media (max-width: 380px){
 
-    /* --------------------------------------------- banner ---------------------------------------------*/
+    /* --------------------------------------------- category ---------------------------------------------*/
 
+    .category-items .category-list{
+        min-width: calc(100% / 1 - 10px);
+    }
     
 }
 
@@ -14,8 +17,8 @@ body header {
 }
 
 header .nav-logo img{
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
 }
 
 header .nav-logo h1{
@@ -90,6 +93,16 @@ header nav .nav-menu-bar a svg:hover{
     transform: scale(1.1);
 }
 
+header nav .nav-menu-remove{
+    cursor: pointer;
+    color: #010d4f;
+    transition: all 0.3s ease;
+}
+
+header nav .nav-menu-remove:hover{
+    transform: scale(1.1);
+}
+
 .search-category-container .search-category-item {
     width: calc(100% / 2 - 10px);
 }
@@ -134,11 +147,12 @@ header nav .nav-menu-bar a svg:hover{
     font-weight: 250;
 }
 
-.category{
+#category .category{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 1.5em;
 }
 
 /* --------------------------------------------- arrivals --------------------------------------------- */
@@ -237,8 +251,8 @@ header nav .nav-menu-bar a svg:hover{
 }
 
 .footer-logo img{
-    width: 70px;
-    height: 50px;
+    width: 100px;
+    height: 40px;
     margin: 10px;
 }
 
@@ -265,8 +279,8 @@ body header {
 }
 
 header .nav-logo img{
-    width: 70px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
 }
 
 header nav .nav-menu-icon{
@@ -333,7 +347,21 @@ header nav .nav-menu-bar span{
     font-size: 25px;
 }
 
+header nav .nav-menu-bar a svg{
+    font-weight: 600;
+}
+
 header nav .nav-menu-bar a svg:hover{
+    transform: scale(1.1);
+}
+
+header nav .nav-menu-remove{
+    cursor: pointer;
+    color: #010d4f;
+    transition: all 0.3s ease;
+}
+
+header nav .nav-menu-remove:hover{
     transform: scale(1.1);
 }
 
@@ -347,7 +375,27 @@ header nav .nav-menu-bar a svg:hover{
 
 /* --------------------------------------------- home ---------------------------------------------*/
 
+.banner .banner-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.banner-content .banner-info{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-info{
+    text-align: center;
+}
+.banner-content .banner-lottie{
+    display: none;
+}
 
 /* --------------------------------------------- arrivals --------------------------------------------- */
 
@@ -402,6 +450,7 @@ header nav .nav-menu-bar a svg:hover{
 /*----------------------------------------- quick view -----------------------------------------*/
 
 #quick-view .quick-view{
+    padding-top: 100px;
     flex-direction: column;
 }
 
