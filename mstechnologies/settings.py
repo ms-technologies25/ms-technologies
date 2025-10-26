@@ -10,7 +10,7 @@ import cloudinary_storage
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$d9ns0qby)!^!%lk_t_55@jwnjjub9p)riv#1mp&=a0)%x)t3-'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
