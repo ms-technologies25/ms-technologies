@@ -742,9 +742,7 @@ nav .nav-menu-icon{
     font-size: 40px;
     font-weight: 700;
     color: #010d4f;
-    margin-bottom: 15px;
     position: relative;
-    padding: 20px;
 }
 
 .about-title h3::after {
@@ -766,11 +764,11 @@ nav .nav-menu-icon{
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
-    padding: 0 60px;
+    padding: 5px 60px;
 }
 
 #about strong {
-    color: #bab3a6;
+    color: #010d4f;
     font-weight: bold;
 }
 
