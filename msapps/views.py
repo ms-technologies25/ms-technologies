@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from msapps.models import product, Category, ProductStock
+from msapps.models import product, Category
 import json
 from math import ceil
 
@@ -39,29 +39,8 @@ def shop(request, category=None):
 
 def productDetails(request, id):
     prod = get_object_or_404(product, id=id)
-    # Prefer variant-based options from ProductStock; fallback to comma fields
-    variant_qs = ProductStock.objects.filter(product=prod, quantity__gt=0)
-    if variant_qs.exists():
-        colors = sorted(set(v.color for v in variant_qs))
-        sizes = sorted(set(v.size for v in variant_qs))
-        options_by_color = {}
-        quantities = {}
-        for v in variant_qs:
-            options_by_color.setdefault(v.color, set()).add(v.size)
-            quantities[f"{v.color}|{v.size}"] = v.quantity
-        # Convert sets to lists for JSON serialization
-        options_by_color = {c: sorted(list(sizes_set)) for c, sizes_set in options_by_color.items()}
-    else:
-        colors = [c.strip() for c in (prod.product_color or '').split(',') if c.strip()]
-        sizes = [s.strip() for s in (prod.product_size or '').split(',') if s.strip()]
-        options_by_color = {}
-        quantities = {}
-
+    
     data = {
         'product': prod,
-        'colors': colors,
-        'sizes': sizes,
-        'variant_options_by_color_json': json.dumps(options_by_color),
-        'variant_quantities_json': json.dumps(quantities),
     }
     return render(request, "quickview.html", data)

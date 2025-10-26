@@ -45,4 +45,74 @@
         </div>
     </section>
 
+    <section id="category">
+        <div class="category">
+            <div class="category-title">
+                <h3>Categories</h3>
+                <p>Explore our categories and exclusive new collections.</p>
+            </div>
+
+            <div class="category-items">
+                {% for cat in global_categories %}
+                <div class="category-list">
+                    <a href="{% url 'shop_category' cat.slug %}">
+                        <div class="category-list-img">
+                            {% if cat.image %}
+                            <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+                            {% else %}
+                            <img src="{% static '/images/prod-1.JPG' %}" alt="{{ cat.name }}">
+                            {% endif %}
+                        </div>
+                    
+                        <div class="category-info">
+                            <h3>{{ cat.name }}</h3>
+                            <p>{{ cat.products.count }} Items</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {% if latest_arrivals %}
+    <section id="arrivals">
+        <div class="arrivals-title">
+            <div class="arrivals-title-info">
+                <h3>Latest Arrivals</h3>
+                <p>Discover the latest trends with our newest collection.</p>
+            </div>
+        </div>
+        
+        <div class="arrivals swiper">
+            <div class="arrivals-wrapper">
+                <div class="arrivals-list swiper-wrapper">
+                    
+                    {% for product in latest_arrivals %}
+                    
+                    <div class="arrivals-product swiper-slide">
+                        
+                        <a href="/shop/product-details/{{ product.id }}/">
+
+                            <div class="arrivals-product-image">
+                                <img src="{{ product.product_image_1.url }}" alt="{{ product.product_name }}">
+                            </div>
+
+                            <div class="arrivals-product-info">
+                                <h3>{{ product.product_name }}</h3>
+                                <p>${{ product.product_price }}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+
+                <div class="arrivals-slide-button swiper-button-prev"></div>
+                <div class="arrivals-slide-button swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
 {% endblock content %}

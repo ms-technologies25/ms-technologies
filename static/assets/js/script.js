@@ -45,4 +45,153 @@ document.addEventListener("DOMContentLoaded", function (){
     removeMenuButton.addEventListener('click', function() {
       navMenu.classList.remove('open');
     });
+
+    /*----------------------------------------- arrivals -----------------------------------------*/
+
+
+    document.querySelectorAll('.arrivals-product').forEach((item, index)=>{
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'scale(1.02)';
+        });
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'scale(1)';
+        });
+    });
+
+    const swiper = new Swiper('.arrivals-wrapper', {
+
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 15,
+
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+
+        breakpoints:{
+            0:{
+                slidesPerView: 1,
+            },
+            768:{
+                slidesPerView: 2,
+            },
+            1025:{
+                slidesPerView: 4,
+            },
+            1200:{
+                slidesPerView: 5,
+            },
+            1600:{
+                slidesPerView: 6,
+            },
+            2000:{
+                slidesPerView: 7,
+            },
+            2400:{
+                slidesPerView: 8,
+            },
+            2800:{
+                slidesPerView: 9,
+            },
+        }
+    });
+    
+    /*----------------------------------------- search panel-----------------------------------------*/
+
+    document.getElementById("search-icon").addEventListener("click", function () {
+        document.getElementById("search-panel").classList.toggle("search-open");
+    });
+
+    document.getElementById("search-menu-icon").addEventListener("click", function () {
+        document.getElementById("search-panel").classList.toggle("search-open");
+        navMenu.classList.remove('open');
+    });
+    
+    document.getElementById("search-close").addEventListener("click", function () {
+        document.getElementById("search-panel").classList.remove("search-open");
+    });
+
+
+    /*----------------------------------------- searching functionality -----------------------------------------*/
+
+    document.querySelector(".search-bar form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+        const searchQuery = document.querySelector("input[name='search']").value;
+    
+        fetch(`/?search=${encodeURIComponent(searchQuery)}`, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+        })
+        .then(response => response.json())
+        .then(data => {
+            const container = document.querySelector(".search-category-container");
+            container.innerHTML = "";
+    
+            if (data.results.length === 0) {
+                container.innerHTML = `<div class="no-results" style="font-style: italic">No products found for "${searchQuery}".</div>`;
+            } 
+            else {
+                data.results.forEach(item => {
+                    const productHTML = `
+                        <div class="search-category-item">
+                            <a href="/shop/product-details/${item.id}/">
+                                <img src="${item.product_image_url}">
+                                <div class="search-overlay">${item.product_name}<br> $${item.product_price}</div>
+                            </a>
+                        </div>`;
+                    container.innerHTML += productHTML;
+                });
+            }
+        });
+    });
+
 });
+
+
+    /*----------------------------------------- load products -----------------------------------------*/
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const products = document.querySelectorAll(".shop-product");
+        const seeMoreBtn = document.getElementById("seeMoreBtn");
+        const seeLessBtn = document.getElementById("seeLessBtn");
+      
+        let visibleCount = 20;
+      
+        const showProducts = () => {
+          products.forEach((product, index) => {
+            product.style.display = index < visibleCount ? "block" : "none";
+          });
+        };
+      
+        // Initial check to show or hide the See More button
+        if (products.length > 20) {
+          seeMoreBtn.style.display = "inline-block";
+        } else {
+          seeMoreBtn.style.display = "none";
+        }
+      
+        seeMoreBtn.addEventListener("click", () => {
+          visibleCount += 20;
+          showProducts();
+          seeLessBtn.style.display = "inline-block";
+      
+          if (visibleCount >= products.length) {
+            seeMoreBtn.style.display = "none";
+          }
+        });
+      
+        seeLessBtn.addEventListener("click", () => {
+          visibleCount = Math.max(20, visibleCount - 20);
+          showProducts();
+          seeMoreBtn.style.display = "inline-block";
+      
+          if (visibleCount === 20) {
+            seeLessBtn.style.display = "none";
+          }
+        });
+      
+        // Initial rendering of products
+        showProducts();
+    });
+      
