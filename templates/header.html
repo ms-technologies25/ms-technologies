@@ -1,0 +1,118 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Logo -->
+    <link href="{% static '/images/logo-helmet.png' %}" rel="icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Rubik:ital,wght@0,300..900;1,300..900&arrivals=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&arrivals=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&arrivals=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Swiper For Arrivals Section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static '/assets/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+
+    <!-- jquery -->
+    <script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_CLIENT_ID }}&components=buttons,funding-eligibility&currency=AUD&locale=en_AU"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <header class="fixed-top">
+        <nav>
+            <div class="nav-logo">
+                <a href="/">
+                    <img src="{% static '/images/logo.png' %}" alt="">
+                </a>
+            </div>
+
+            <div class="nav-link">
+                <ul>
+                    {% url 'index' as url %}
+                    <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">Home</a></li>
+                    <li><a class="{% if request.path == '/shop/' %} active {% endif %}" href="/shop/">Shop</a></li>
+                    <li class="dropdown"><a href="">Collections
+                        <svg width="20" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg></a>
+                        <ul>
+                            {% for cat in global_categories %}
+                            <li><a href="{% url 'shop_category' cat.slug %}">{{ cat.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% url 'about' as url %}
+                    <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">About Us</a></li>
+                    {% url 'contact' as url %}
+                    <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-bar">
+                
+                <div class="nav-search">
+                    <a id="search-icon">
+                        <svg width="24" height="24" viewBox="0 -1 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5 21C15.7467 21 20 16.5228 20 11C20 5.47715 15.7467 1 10.5 1C5.25329 1 1 5.47715 1 11C1 16.5228 5.25329 21 10.5 21Z" stroke="#010d4f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M26 27L18 19" stroke="#010d4f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+
+                    {% include "search.html" %}
+                    
+                </div>                   
+            </div>
+            
+            <div class="nav-menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                </svg>
+            </div>
+
+            <div id="nav-menu" class="nav-menu">
+                
+                <div class="nav-menu-bar">
+                    <div class="nav-search">
+                        <a id="search-menu-icon">
+                            <svg width="25" height="25" viewBox="0 0 27 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.5 21C15.7467 21 20 16.5228 20 11C20 5.47715 15.7467 1 10.5 1C5.25329 1 1 5.47715 1 11C1 16.5228 5.25329 21 10.5 21Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M26 27L18 19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-menu-link">
+                    <ul>
+                        {% url 'index' as url %}
+                        <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">Home</a></li>
+                        <li><a class="{% if request.path == '/shop/' %} active {% endif %}" href="/shop/">Shop</a></li>
+                        {% url 'about' as url %}
+                        <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">About Us</a></li>
+                        {% url 'contact' as url %}
+                        <li><a class="{% if request.path == url %} active {% endif %}" href="{{url}}">Contact Us</a></li>
+                        {% for cat in global_categories %}
+                        <li><a href="{% url 'shop_category' cat.slug %}">{{ cat.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>

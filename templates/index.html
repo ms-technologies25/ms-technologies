@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+{% block title %} MS Technologies | Home {% endblock title %}
+{% block content %} 
+{% load static %}
+    
+    <section id="home">
+        <div class="home">
+            <div class="banner">
+                <!-- Video Background -->
+                <video class="banner-video" autoplay muted loop playsinline>
+                    <source src="{% static 'images/banner-bg.mp4' %}" type="video/mp4">
+                </video>
+                
+                <div class="video-overlay"></div>
+                
+                <!-- Banner Content -->
+                <div class="banner-content">
+                    <div class="banner-info">
+                        <div class="banner-badge">
+                            <span>Professional Electrical Solutions</span>
+                        </div>
+                        <h1>MS TECHNOLOGIES</h1>
+                        <h2>Your Trusted Electrical Partner</h2>
+                        <p>Specializing in comprehensive electrical services including house wiring, industrial wiring, substation work, CCTV systems, and electrical components. We provide reliable solutions for residential, commercial, and industrial projects.</p>
+                        
+                        <div class="banner-explore">
+                            <button class="btn-primary" onclick="scrollToContact()">Get Quote</button>
+                            <button class="btn-secondary" onclick="scrollToServices()">Our Services</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Lottie Animation Container -->
+                    <div class="banner-lottie">
+                        <lottie-player 
+                            src="{% static 'images/lottie.json' %}" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </lottie-player>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

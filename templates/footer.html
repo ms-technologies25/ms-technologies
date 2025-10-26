@@ -1,0 +1,34 @@
+{%load static %}
+<footer>
+    <div class="footer">
+        <div class="footer-logo">
+            <a href="#home"><img src="{% static '/images/logo.png' %}" alt="" width="120" height="50"></a>
+        </div>
+        <div class="footer-link">
+            <ul class="d-flex justify-content-center">
+                <li><a href="#home">Home</a></li>
+                <li><a href="/shop/">Shop</a></li>
+                <li><a href="#arrivals">Arrivals</a></li>
+                {% url 'about' as url %}
+                <li><a href="{{url}}">About Us</a></li>
+                {% url 'contact' as url %}
+                <li><a href="{{url}}">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-icon">
+            <a href="https://www.instagram.com/abadas_australia"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100046395854190&mibextid=wwXIfr&rdid=xT3TQdODlZcXIj0Q&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Ci89hdBNd%2F%3Fmibextid%3DwwXIfr#"><i class="bi bi-facebook"></i></a>
+            <a href="https://wa.me/61432078656" target="_blank"><i class="bi bi-whatsapp"></i></a>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2025 <span> MS Technologies</span> | All rights reseved by <span>MS Technologies</span></p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="{% static '/assets/js/script.js' %}"></script>
+</body>
+
+</html>
