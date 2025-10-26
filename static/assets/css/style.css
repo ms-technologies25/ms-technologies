@@ -790,11 +790,11 @@ nav .nav-menu-icon{
 
 .contact .contact-info i {
     font-size: 20px;
-    color: #333;
+    color: #021892;
     float: left;
     width: 44px;
     height: 44px;
-    background: #bab3a6;
+    background: #abc9e4;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -825,24 +825,43 @@ nav .nav-menu-icon{
 .contact .contact-info .contact-info-email:hover i,
 .contact .contact-info .contact-info-address:hover i,
 .contact .contact-info .contact-info-phone:hover i {
-    background: #333;
-    color: #bab3a6;
+    background: #010d4f;
+    color: #abc9e4;
     cursor: pointer;
+}
+
+.contact form label{
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .contact form .contact-form-input{
-    padding: 10px 0;
+    padding: 5px 0;
 }
 
 .contact form button{
-    width: 100px;
-    padding: 10px;
-    font-size: 18px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    color: #fff;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
     outline: none;
-    background-color: #222;
-    transition: background-color 0.3s ease;
+    background: linear-gradient(135deg, #ff5100, #f3870d);
+    color: white;
+    box-shadow: 0 6px 20px rgba(1, 13, 79, 0.4);
+}
+
+.contact form button:hover {
+    background: linear-gradient(135deg, #f3870d, #ff5100);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(1, 13, 79, 0.6);
 }
 
 .contact form button:hover {

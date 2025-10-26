@@ -60,7 +60,7 @@ def contactUs(request):
         data = contact(
             contact_name = request.POST.get('contact-name'),
             contact_email = request.POST.get('contact-email'),
-            contact_subject = request.POST.get('contact-subject'),
+            contact_number = request.POST.get('contact-number'),
             contact_message = request.POST.get('contact-message'),
         )
         data.save()

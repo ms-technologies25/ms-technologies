@@ -12,11 +12,11 @@ from tinymce.models import HTMLField
 class contact(models.Model):
     contact_name= models.CharField(max_length = 150, verbose_name="Name")
     contact_email=models.CharField(max_length=150, verbose_name="Email")
-    contact_subject=models.CharField(max_length = 500, verbose_name="Subject")
+    contact_number=models.CharField(max_length = 500, verbose_name="Contact Number")
     contact_message=models.CharField(max_length = 1500, verbose_name="Message")
 
     def __str__(self):
-        return self.contact_subject
+        return self.contact_name
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
