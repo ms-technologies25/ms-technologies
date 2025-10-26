@@ -18,15 +18,21 @@ document.addEventListener("DOMContentLoaded", function (){
             contactSection.scrollIntoView({ behavior: 'smooth' });
         } else {
             // If contact section doesn't exist, redirect to contact page
-            window.location.href = '/contact/';
+            window.location.href = '/contact';
         }
     }
 
     // Function to scroll to services section
     function scrollToServices() {
-        const servicesSection = document.getElementById('category');
+        const servicesSection = document.getElementById('services');
         if (servicesSection) {
             servicesSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // Fallback to category section if services doesn't exist
+            const categorySection = document.getElementById('category');
+            if (categorySection) {
+                categorySection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     }
 
@@ -56,6 +62,41 @@ document.addEventListener("DOMContentLoaded", function (){
         item.addEventListener('mouseleave', () => {
             item.style.transform = 'scale(1)';
         });
+    });
+
+    /*----------------------------------------- services -----------------------------------------*/
+
+    // Add hover effects for service cards
+    document.querySelectorAll('.service-card').forEach((card) => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Add scroll animation for services section
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const servicesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe service cards for animation
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        servicesObserver.observe(card);
     });
 
     const swiper = new Swiper('.arrivals-wrapper', {
