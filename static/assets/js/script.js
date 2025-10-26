@@ -40,6 +40,27 @@ document.addEventListener("DOMContentLoaded", function (){
     window.scrollToContact = scrollToContact;
     window.scrollToServices = scrollToServices;
 
+    /*----------------------------------------- FAQ -----------------------------------------*/
+
+    // FAQ toggle functionality
+    function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current FAQ item
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    }
+
+    // Make toggleFAQ globally available
+    window.toggleFAQ = toggleFAQ;
+
     const menuIcon = document.querySelector('.nav-menu-icon');
     const navMenu = document.getElementById('nav-menu');
     const removeMenuButton = document.querySelector('.nav-menu-remove');
