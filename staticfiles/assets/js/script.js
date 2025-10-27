@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function (){
                         <div class="search-category-item">
                             <a href="/shop/product-details/${item.id}/">
                                 <img src="${item.product_image_url}">
-                                <div class="search-overlay">${item.product_name}<br> $${item.product_price}</div>
+                                <div class="search-overlay">${item.product_name}<br> ৳${item.product_price} Tk</div>
                             </a>
                         </div>`;
                     container.innerHTML += productHTML;
